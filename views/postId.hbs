@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+{{> baseHead customTitle=customTitle}}
+<body>
+    {{> siteHeader }}
+    <div class="container">
+    {{#if onePost}}
+        <div class="post">
+            <h4>{{onePost.title}}</h4>
+            <p class="user-post-id">
+                <span>{{onePost.user}} | </span>
+                <span>{{onePost.createdAt}}</span>
+            </p>
+            <p>{{onePost.content}}</p>
+        </div>
+        <hr>
+            <form class="form-post" action="/post/{{onePost.id}}/comment" method="post">
+                <p>
+                    <textarea name="content" placeholder="แสดงความคิดเห็น">{{values.content}}</textarea>
+                </p>
+                <p>
+                    <input type="text" name="user" placeholder="คุณ..."  value="{{values.user}}">
+                </p>
+                <p class="check">
+                    <input type="checkbox" name="accepted" id="accepted-input">
+                    <label for="accepted-input">ข้อความยาวๆที่หลายคนเคยเจอ อาจไม่ต้องอ่านก็ได้ อาจไม่ต้องอ่านก็ได้</label>
+                </p>
+                <p>
+                    <button type="submit">คอมเม้นท์</button>
+                </p>
+                {{#if errorMsg}}
+                    <p class="error">{{errorMsg}}</p>
+                {{/if}}
+            </form>
+        <hr>
+        {{#if postComments}}
+            <h4 class="comment">{{postComments.length}} คอมเม้นท์</h4>
+        {{else}}
+            <h4 class="comment">ยังไม่มีคอมเม้นท์</h4>
+        {{/if}}
+        {{#each postComments}}
+            <div class="comments">
+                <p>
+                    <span>{{this.user}} | </span>
+                    <span>{{this.createdAt_new}}</span>
+                </p>
+                <p>{{this.content}}</p>
+            </div>
+        {{/each}}
+    {{else}}
+        <p>ไม่พบโพสต์ที่คุณต้องการดู</p>
+    {{/if}}
+    </div>
+    {{> siteFooter }}
+</body>
+</html>

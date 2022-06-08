@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+{{> baseHead customTitle='หน้าแรก'}}
+<body>
+    {{> siteHeader }}
+    <div class="container">
+        <h2>สวัสดียิ้มยิ้ม</h2>
+        <p class="text">วันนี้มีอะไรฝากถามไหมจ้ะ...</p>
+        {{#each allPosts}}
+            <div class="post">
+                <h4><a href="/post/{{this.id}}">{{ this.title }}</a></h4>
+                <p class="user-post">
+                    <span>{{this.user}} | </span>
+                    <span>{{this.createdAt_new}}</span>
+                </p>
+                {{#if this.commentsCount}}
+                    <p class="comment">{{this.commentsCount}} คอมเม้นท์</p>    
+                {{else}}
+                    <p class="comment">ยังไม่มีคอมเม้นท์</p>                
+                {{/if}}
+            </div>
+        {{/each}}
+    </div>
+    {{> siteFooter }}
+</body>
+</html>

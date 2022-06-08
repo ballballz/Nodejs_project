@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+{{> baseHead }}
+<body>
+    {{> siteHeader }}
+    <div class="container">
+        <h2>สร้างโพสต์</h2>
+        <p class="text">วันนี้เล่าเรื่องอะไรดีจ้ะ...</p>
+        <form class="form-post" action="/post/create" method="post">
+            <p>
+                <input type="text" name="title" placeholder="ชื่อหัวข้อ" value="{{values.title}}">
+            </p>
+            <p>
+                <textarea name="content" placeholder="เนื้อหา">{{values.content}}</textarea>
+            </p>
+            <p>
+                <input type="text" name="user" placeholder="คุณ..."  value="{{values.user}}">
+            </p>
+            <p class="check">
+                <input type="checkbox" name="accepted" id="accepted-input">
+                <label for="accepted-input">ข้อความยาวๆที่หลายคนเคยเจอ อาจไม่ต้องอ่านก็ได้ อาจไม่ต้องอ่านก็ได้</label>
+            </p>
+            <p>
+                <button type="submit">สร้างโพสต์</button>
+            </p>
+            {{#if errorMsg}}
+                <p class="error">{{errorMsg}}</p>
+            {{/if}}
+        </form>
+    </div>
+    {{> siteFooter }}
+</body>
+</html>
